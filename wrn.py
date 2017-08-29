@@ -1,7 +1,8 @@
 from keras import layers, models, regularizers
 
-# Define network
+
 def building_block(inputs, double_filters, weight_decay, dropout):
+    """Create basic building block for WRN."""
     try:
         layer_id = building_block.id
     except AttributeError:
@@ -29,6 +30,7 @@ def building_block(inputs, double_filters, weight_decay, dropout):
 
 
 def build_wrn(inputs, n_classes, first_layer_kernel=(3, 3), first_layer_strides=(1, 1), groups=3, blocks_in_groups=1, filters_mult=1, dropout=0., weight_decay=0., include_softmax=True):
+    """Create WRN."""
     n_filters_1st_layer = 16 * filters_mult
     t = layers.BatchNormalization(name='bn0')(inputs)
     t = layers.Conv2D(n_filters_1st_layer, first_layer_kernel, kernel_regularizer=regularizers.l2(weight_decay), strides=first_layer_strides, padding='same', activation='relu', name='conv0_7x7x' + str(n_filters_1st_layer) + '_stride2')(t)
