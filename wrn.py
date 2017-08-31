@@ -10,7 +10,7 @@ def building_block(inputs, double_filters, weight_decay, dropout, include_batch_
         layer_id = 1
     x = inputs
     if include_batch_norm:
-        x = layers.BatchNormalization(name='l' + str(layer_id) + '_bn1')(inputs)
+        x = layers.BatchNormalization(name='l' + str(layer_id) + '_bn1')(x)
     x = layers.Activation('relu')(x)
     x = layers.Dropout(dropout)(x)
     if double_filters:
